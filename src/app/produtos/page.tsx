@@ -1,9 +1,14 @@
 "use client"
 import { TipoLanche } from "@/types/types";
+import { cookies } from "next/headers";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { Suspense, useEffect, useState } from "react";
 
 export default function Produtos() {
+
+    const navigate = useRouter();
 
     const [lista,setLista] = useState<TipoLanche[]>([]);
 
@@ -20,6 +25,29 @@ export default function Produtos() {
 
     }, []);
     
+    const handleDelete = async (id:number)=>{
+
+        try {
+            const lanche = await fetch(`/api/base-route/${id}`,{
+                method: 'DELETE',
+                });
+
+                if (lanche.ok) {
+                        alert("Produto deletado com sucesso");
+                        navigate.push("/");
+                 }else{
+                    alert("Ocorreu um erro ao tentar deletar o produto!");
+                    navigate.push("/");
+                 }
+
+        } catch (error) {
+            console.error("Falha ao apagar registro:", error);
+        }
+
+            
+    }
+
+
     return (
         <div>
             <Suspense fallback={<p>Loading a ...</p>}>
@@ -42,7 +70,10 @@ export default function Produtos() {
                             <td>{lanche.nome}</td>
                             <td>{lanche.preco}</td>
                             <td>{lanche.desc}</td>
-                            <td> <Link href={`/produtos/produto/${lanche.id}`}>Editar</Link> | <Link href={`/produtos/produto/${lanche.id}`}>Excluir</Link></td>
+                            <td> <Link href={`/produtos/produto/${lanche.id}`}>Editar</Link> |
+                            
+                             <Link href="#" onClick={()=>handleDelete(lanche.id)}>Excluir</Link></td>
+
                         </tr>
                     ))}
                 </tbody>

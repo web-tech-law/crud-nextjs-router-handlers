@@ -27,4 +27,17 @@
     .content-wrap{
         @apply pb-5;
     }
+
+    .form{
+        @apply bg-gray-800 text-white text-lg font-bold p-5 rounded-lg shadow-lg;
+
+        & input, textarea{
+            @apply bg-gray-700 text-white text-lg font-bold p-2 rounded-lg m-5 block w-5/12;
+        }
+
+        & button{
+            @apply bg-gray-600 text-white text-lg font-bold p-2 rounded-lg;
+        }
+    }
+
 }
