@@ -1,5 +1,5 @@
 "use client"
-import { TipoLanche } from "@/types";
+import { TipoLanche } from "@/types/types";
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 
@@ -37,12 +37,12 @@ export default function Produtos() {
                 </thead>
                 <tbody>
                     {lista.map((lanche) => (
-                        <tr key={lanche.$id}>
-                            <td>{lanche.$id}</td>
+                        <tr key={lanche.id}>
+                            <td>{lanche.id}</td>
                             <td>{lanche.nome}</td>
                             <td>{lanche.preco}</td>
                             <td>{lanche.desc}</td>
-                            <td> <Link href={`/produtos/produto/${lanche.$id}`}>Editar</Link> | <Link href={`/produtos/produto/${lanche.$id}`}>Excluir</Link></td>
+                            <td> <Link href={`/produtos/produto/${lanche.id}`}>Editar</Link> | <Link href={`/produtos/produto/${lanche.id}`}>Excluir</Link></td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,5 +1,5 @@
 export type TipoLanche ={
-    $id:number | undefined;
+    id:number;
     nome: string;
     preco:number;
     desc:string;

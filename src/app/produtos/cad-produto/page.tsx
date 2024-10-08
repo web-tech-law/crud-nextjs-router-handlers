@@ -1,5 +1,5 @@
 "use client";
-import { TipoLanche } from "@/types";
+import { TipoLanche } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { Suspense, useState } from "react";
 
@@ -9,7 +9,7 @@ export default function CadLanche() {
 
   // Estados para armazenar os valores dos inputs
   const [produtos, setProdutos] = useState<TipoLanche>({
-    $id:0,
+    id:0,
     nome: "",
     preco: 0,
     desc: "",
@@ -41,7 +41,7 @@ export default function CadLanche() {
         alert("Lanche cadastrado com sucesso!");
         // Resetar os campos após o envio
         setProdutos({
-          $id:0,
+          id:0,
           nome: "",
           preco: 0,
           desc: "",
